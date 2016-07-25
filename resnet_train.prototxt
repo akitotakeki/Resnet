@@ -12,7 +12,7 @@ layer {
   }
   data_param {
     source: "/srv/datasets/ILSVRC2012/train_lmdb"
-    batch_size: 256
+    batch_size: 64
     backend: LMDB
   }
 }
@@ -992,5 +992,15 @@ layer {
   bottom: "InnerProduct1"
   bottom: "Data2"
   top: "SoftmaxWithLoss1"
+}
+layer {
+  name: "Accuracy1"
+  type: "Accuracy"
+  bottom: "InnerProduct1"
+  bottom: "Data2"
+  top: "Accuracy1"
+  include {
+    phase: TEST
+  }
 }
 
