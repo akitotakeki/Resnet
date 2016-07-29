@@ -180,7 +180,7 @@ if __name__ == '__main__':
             correct += sum(solver.test_nets[0].blobs['InnerProduct1'].data.argmax(1)
                            == solver.test_nets[0].blobs['Data2'].data)
         test_acc[it // test_interval] = correct / 1e4
-        print('iter :',it, ', acc :' ,test_acc[it])
+        print('iter :',it, ', acc :' ,test_acc[it // test_interval])
 
   _, ax1 = subplots()
   ax2 = ax1.twinx()
