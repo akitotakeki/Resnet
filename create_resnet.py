@@ -149,7 +149,7 @@ if __name__ == '__main__':
       f.write(str(s))
 
   caffe.set_mode_gpu()
-  caffe.set_device(4)
+  caffe.set_device(2)
   solver = None
   solver = caffe.get_solver(solver_config_path)
   niter = 600000  # EDIT HERE increase to train for longer
@@ -179,7 +179,7 @@ if __name__ == '__main__':
             solver.test_nets[0].forward()
             correct += sum(solver.test_nets[0].blobs['InnerProduct1'].data.argmax(1)
                            == solver.test_nets[0].blobs['Data2'].data)
-        test_acc[it // test_interval] = correct / 1e4
+        test_acc[it // test_interval] = correct / (100.0 * 100)
         print('iter :',it, ', acc :' ,test_acc[it // test_interval])
 
   _, ax1 = subplots()
